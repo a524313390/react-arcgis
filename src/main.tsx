@@ -4,7 +4,6 @@ import RouterBox from '@/router';
 import "@arcgis/core/assets/esri/themes/light/main.css"
 import '@/assets/index.less'
 import 'antd/dist/antd.css';
-console.log(465456)
 ReactDOM.render(
     <React.StrictMode>
         <RouterBox />
