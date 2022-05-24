@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
-import reactRefresh from '@vitejs/plugin-react-refresh'
-import styleImport from 'vite-plugin-style-import'
-import path from "path";
+import { defineConfig } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+import styleImport from 'vite-plugin-style-import';
+import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -11,30 +11,34 @@ export default defineConfig({
                 {
                     libraryName: 'ant-design-vue',
                     esModule: true,
-                    resolveStyle: (name) => {
-                        return `ant-design-vue/es/${name}/style/index`
-                    }
-                }
-            ]
+                    resolveStyle: name => {
+                        return `ant-design-vue/es/${name}/style/index`;
+                    },
+                },
+            ],
         }),
-
     ],
     css: {
         preprocessorOptions: {
             less: {
-                modifyVars: { // 更改主题在这里
+                modifyVars: {
+                    // 更改主题在这里
                     'primary-color': '#52c41a',
                     'link-color': '#1DA57A',
-                    'border-radius-base': '2px'
+                    'border-radius-base': '2px',
                 },
-                javascriptEnabled: true
-            }
-        }
+                javascriptEnabled: true,
+            },
+        },
     },
-
+    base: 'arcgis',
     resolve: {
         alias: {
-            "@": path.resolve(__dirname, "src"),
-        }
-    }
-})
+            '@': path.resolve(__dirname, 'src'),
+        },
+    },
+    server: {
+        open: true,
+        port: 5555,
+    },
+});

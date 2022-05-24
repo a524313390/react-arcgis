@@ -1,40 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu } from 'antd';
-import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 
-
-} from '@ant-design/icons';
-
-import './index.less'
+import './index.less';
 
 import { Link, useHistory } from 'react-router-dom';
 import { menuList } from '@/router';
 
 const { Header, Sider, Content } = Layout;
 
-
-
-
 export default function Layouts(props: any) {
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(false);
     const [defaultKey, setDefaultKey] = useState(['']);
     const history = useHistory();
     const toggle = () => {
-        setCollapsed(!collapsed)
+        setCollapsed(!collapsed);
     };
     useEffect(() => {
         const pathname = history.location.pathname;
-        console.log([pathname]);
 
-        setDefaultKey([pathname])
-
-
+        setDefaultKey([pathname]);
     }, [history.location.pathname]);
 
     return (
-        <Layout className='layouts'>
+        <Layout className="layouts">
             <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" selectedKeys={defaultKey}>
@@ -45,7 +34,6 @@ export default function Layouts(props: any) {
                             </Menu.Item>
                         );
                     })}
-
                 </Menu>
             </Sider>
             <Layout className="site-layout">
@@ -61,12 +49,10 @@ export default function Layouts(props: any) {
                         margin: '24px 16px',
                         padding: 24,
                         minHeight: 280,
-                    }}
-                >
+                    }}>
                     {props.children}
-
                 </Content>
             </Layout>
         </Layout>
-    )
+    );
 }

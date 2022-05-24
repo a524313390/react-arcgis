@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import Home from '@/page/home';
 import MapBox from '@/components/MapBox';
 import Layouts from '@/Layouts';
@@ -17,11 +17,11 @@ import Print from '@/page/Print';
 import Measure from '@/page/Measure';
 import MapToggle from '@/page/MapToggle';
 import CustomPopup from '@/page/CustomPopup';
+import DrawCricle from '@/page/DrawCricle';
+import DrawCriclePluse from '@/page/DrawCriclePluse';
+import { BASE_NAME } from '@/config';
 const IconFont = createFromIconfontCN({
-    scriptUrl: [
-        '//at.alicdn.com/t/font_2757048_kosyf2ibsx.js',
-
-    ],
+    scriptUrl: ['//at.alicdn.com/t/font_2757048_kosyf2ibsx.js'],
 });
 export const menuList = [
     { name: '初始化地图', path: '/', component: Home, icon: <IconFont type="icon-map" />, exact: true },
@@ -38,26 +38,23 @@ export const menuList = [
     { name: '地图测量', path: '/measure', component: Measure, icon: <IconFont type="icon-celiang" />, exact: false },
     { name: '二三维切换', path: '/maptoggle', component: MapToggle, icon: <IconFont type="icon-ersanweiqiehuan" />, exact: false },
     { name: '自定义弹窗', path: '/custompopup', component: CustomPopup, icon: <IconFont type="icon-danchuang" />, exact: false },
-]
+    { name: '拖动圆', path: '/drawcircle', component: DrawCricle, icon: <IconFont type="icon-danchuang" />, exact: false },
+    { name: '拖动圆改进', path: '/drawcirclepluse', component: DrawCriclePluse, icon: <IconFont type="icon-danchuang" />, exact: false },
+];
 
 const RouterBox = () => {
     return (
-
-        <Router>
+        <Router basename={BASE_NAME}>
             <Layouts>
                 <Switch>
                     {menuList.map(item => {
-                        return (
-                            <Route path={item.path} exact={item.exact} component={item.component} key={item.path}></Route>
-                        );
+                        return <Route path={item.path} exact={item.exact} component={item.component} key={item.path}></Route>;
                     })}
 
                     <Redirect to="/"></Redirect>
                 </Switch>
             </Layouts>
         </Router>
-
-
     );
-}
-export default RouterBox
+};
+export default RouterBox;
